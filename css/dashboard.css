@@ -65,6 +65,15 @@ header {
     width: 100%;
     height: 0.15rem;
     background-color: var(--menu-color);
+    transition: all 0.2s ease;
+}
+.menu.menu-toggle div:first-child {
+    width: 40%;
+    transform: rotate(-35deg) translate(-30%, 175%);
+}
+.menu.menu-toggle div:last-child {
+    width: 40%;
+    transform: rotate(35deg) translate(-30%, -160%);
 }
 
 /* Brand */
@@ -115,7 +124,7 @@ header {
 /* Sidebar */
 .sidebar {
     margin-top: 4rem;
-    width: 18.75rem;
+    width: 4rem;
     height: 100%;
     position: fixed;
     top: 0;
@@ -125,6 +134,10 @@ header {
     border-right: 1px solid var(--border-color);
     overflow-y: auto;
     background-color: var(--background-color);
+    transition: width 0.5s ease;
+}
+.sidebar.menu-toggle {
+    width: 18.75rem;
 }
 .sidebar a {
     display: flex;
