@@ -1,3 +1,10 @@
+// Verificar sesión
+const rol = localStorage.getItem("rol");
+
+if (!rol) {
+    window.location.href = "login.html";
+}
+
 const menu = document.getElementById('menu');
 const sidebar = document.getElementById('sidebar');
 const main = document.getElementById('main');
