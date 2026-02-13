@@ -1,23 +1,26 @@
-const form = document.getElementById("login-form");
+// Esperar que cargue el DOM
+document.addEventListener("DOMContentLoaded", () => {
 
-form.addEventListener("submit", function (e) {
-    e.preventDefault();
+    const form = document.getElementById("login-form");
 
-    const usuario = document.getElementById("usuario").ariaValueMax.trim();
-    const password = document.getElementById("password").ariaValueMax.trim();
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
 
-    // Simulación temporal
-    if (usuario === "oficina") {
+        const usuario = document.getElementById("usuario").value.trim();
+        const password = document.getElementById("password").value.trim();
+        // const rol = document.getElementById("rol").value;
+
+        // Validación básica
+        if (usuario === "" || password === "") {
+            alert("Por favor completa todos los campos");
+            return;
+        }
+
+        // Guardar rol en localStorage por ahora en rol oficina
         localStorage.setItem("rol", "oficina");
-        localStorage.setItem("usuario", usuario);
-        window.location.href = "dashboard.html;"
-    }
-    else if (usuario === "mensajero") {
-        localStorage.setItem("rol", "mensajero");
-        localStorage.setItem("usuario", usuario);
+
+        // Redirigir al dashboard
         window.location.href = "dashboard.html";
-    }
-    else {
-        alert("Usuario no válido")
-    }
-})
+    });
+
+});

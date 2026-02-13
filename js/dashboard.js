@@ -1,16 +1,35 @@
-// Verificar sesión
-const rol = localStorage.getItem("rol");
+document.addEventListener("DOMContentLoaded", () => {
 
-if (!rol) {
-    window.location.href = "login.html";
-}
+    // Verificar sesión
+    const rol = localStorage.getItem("rol");
 
-const menu = document.getElementById('menu');
-const sidebar = document.getElementById('sidebar');
-const main = document.getElementById('main');
+    if (!rol) {
+        window.location.href = "login.html";
+        return;
+    }
 
-menu.addEventListener('click', ()=>{
-    sidebar.classList.toggle('menu-toggle');
-    menu.classList.toggle('menu-toggle');
-    main.classList.toggle('menu-toggle');
+    // Toggle sidebar
+    const menu = document.getElementById("menu");
+    const sidebar = document.getElementById("sidebar");
+    const main = document.getElementById("main");
+
+    if (menu && sidebar && main) {
+        menu.addEventListener("click", () => {
+            menu.classList.toggle("menu-toggle");
+            sidebar.classList.toggle("menu-toggle");
+            main.classList.toggle("menu-toggle");
+        });
+    }
+
+    // Logout
+    const logout = document.getElementById("logout");
+
+    if (logout) {
+        logout.addEventListener("click", (e) => {
+            e.preventDefault();
+            localStorage.clear();
+            window.location.href = "login.html";
+        });
+    }
+
 });
