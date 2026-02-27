@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  color: #eaecef;
+}
+
+header {
+  padding: 30px;
+  background: #011627;
+  height: 40px;
+}
+
+.sidenav {
+  width: 240px;
+  background: #011627;
+  position: absolute;
+  height: 95vh;
+  padding: 0 30px;
+  left: -100%;
+  transition: all 0.8s;
+}
+
+.sidenav.active {
+  left: 0;
+}
+
+.logo {
+  width: 60px;
+  font-size: 3em;
+}
+
+ul {
+  padding: 0;
+}
+
+ul li {
+  list-style-type: none;
+  margin: 10px 0;
+}
+
+ul li a {
+  color: #eaecef;
+  text-decoration: none;
+  font-size: 16px;
+  display: block;
+  padding: 10px 15px;
+  border-radius: 6px;
+}
+
+ul li a:hover,
+ul li a.active {
+  background: #172b4d;
+}
+
+.burger {
+  font-size: 35px;
+  cursor: pointer;
+}
+
+.main {
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  color: #c9c9c9;
+}
