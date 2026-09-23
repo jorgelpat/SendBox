@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+
+.formContainer {
+    /* Activamos flex */
+    display: flex;
+
+    /* Los ordenamos uno debajo del otro */
+    flex-direction: column;
+
+    /* Centramos todo horizontalmente*/
+    align-items: center;
+
+    /* Centramos verticalmente, pero hay que darle dimensión */
+    justify-content: center;
+    min-height: 100vh;
+
+    background-color: #172b4d;
+}
+
+.submitButton {
+    background: #011627;
+    color: #c9c9c9;
+}
+
