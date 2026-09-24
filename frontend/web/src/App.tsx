@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import MainLayout from './components/MainLayout';
 import Login from './pages/Login/Login';
 import Home from './pages/Home';
-import About from './pages/About';
 import PasswordResets from './pages/PasswordResets';
+import CreateDelivery from './pages/CreateDelivery/CreateDelivery';
 import CreateClient from './pages/CreateClient/CreateClient';
 import CreateUser from './pages/CreateUser/CreateUser';
 import Payments from './pages/Payments';
@@ -12,8 +12,6 @@ import DeliveryHistory from './pages/DeliveryHistory';
 
 import './App.css';
 
-// link: https://www.youtube.com/watch?v=5I_uGo8-jPs&list=PL9LZM-hWdUvspSZa2EMvnGbZclySfLhnk
-// time: 18:57
 
 function App() {
   return (
@@ -28,7 +26,7 @@ function App() {
 
             <Route element={<MainLayout />}>
               <Route path="/home" element={<Home />} />
-              <Route path="/about" element={<About />} />
+              <Route path="/create-delivery" element={<CreateDelivery />} />
               <Route path="/my-deliveries" element={<DeliveryHistory />} />
               <Route path="/create-client" element={<CreateClient />} />
               <Route path="/create-user" element={<CreateUser />} />

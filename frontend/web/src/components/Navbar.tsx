@@ -14,7 +14,7 @@ const Navbar = ({show}: NavbarProps) => {
                     <Link to="/home">Home</Link>
                 </li>
                 <li>
-                    <Link to="/about">About us</Link>
+                    <Link to="/create-delivery">Create Delivery</Link>
                 </li>
                 <li>
                     <Link to="/my-deliveries">Mis Domicilios</Link>
