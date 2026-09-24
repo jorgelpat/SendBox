@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+
+.formContainer {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+
+    background-color: #111;
+    border: 1px solid #2a2a2a;
+    border-radius: 12px;
+}
+
+.formContainer h2 {
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    color: #fff;
+    text-align: center;
+}
+
+.formRow {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    align-items: center;
+    /* gap: 1rem; */
+
+    margin-bottom: 1rem;
+}
+
+.formRow label {
+    color: #ccc;
+    font-size: 0.9rem;
+}
+
+.formRow input {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 0.75rem 1rem;
+
+    background-color: #1c1c1c;
+    color: #fff;
+
+    border: 1px solid #333;
+    border-radius: 6px;
+
+    font-size: 1rem;
+}
+
+.formRow input::placeholder {
+    color: #777;
+}
+
+.formRow input:focus {
+    outline: none;
+    border-color: #666;
+}
+
+.error {
+    margin: 0.5rem 0;
+    color: #ff6b6b;
+    font-size: 0.9rem;
+}
+
+.submitButton {
+    display: block;
+    width: 100%;
+
+    margin-top: 1.5rem;
+    padding: 0.75rem 1rem;
+
+    background-color: #fff;
+    color: #111;
+
+    border: none;
+    border-radius: 6px;
+
+    font-size: 1rem;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.submitButton:hover {
+    background-color: #ddd;
+}
