@@ -5,6 +5,7 @@ import Login from './pages/Login/Login';
 import Home from './pages/Home';
 import About from './pages/About';
 import PasswordResets from './pages/PasswordResets';
+import CreateClient from './pages/CreateClient/CreateClient';
 import CreateUser from './pages/CreateUser/CreateUser';
 import Payments from './pages/Payments';
 import DeliveryHistory from './pages/DeliveryHistory';
@@ -29,6 +30,7 @@ function App() {
               <Route path="/home" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/my-deliveries" element={<DeliveryHistory />} />
+              <Route path="/create-client" element={<CreateClient />} />
               <Route path="/create-user" element={<CreateUser />} />
               <Route path="/payments" element={<Payments />} />
             </Route>

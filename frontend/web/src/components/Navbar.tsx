@@ -20,6 +20,9 @@ const Navbar = ({show}: NavbarProps) => {
                     <Link to="/my-deliveries">Mis Domicilios</Link>
                 </li>
                 <li>
+                    <Link to="/create-client">Create Client</Link>
+                </li>
+                <li>
                     <Link to="/create-user">Create User</Link>
                 </li>
                 <li>
