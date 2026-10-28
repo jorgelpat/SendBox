@@ -1,0 +1,185 @@
+.login-page {
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 24px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f7faff 0%,
+      #eef5ff 100%
+    );
+}
+
+.login-card {
+  width: 100%;
+  max-width: 450px;
+
+  padding: 48px;
+
+  background-color: #ffffff;
+
+  border: 1px solid #dbe4f0;
+  border-radius: 18px;
+
+  box-shadow:
+    0 18px 45px rgba(15, 35, 65, 0.08);
+}
+
+.login-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 14px;
+
+  margin-bottom: 44px;
+}
+
+.login-brand h1 {
+  margin: 0;
+
+  color: #13233e;
+
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.login-logo {
+  width: 58px;
+  height: 58px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 12px;
+
+  background-color: #132b4c;
+  color: white;
+
+  font-size: 30px;
+}
+
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+
+  gap: 26px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+
+  gap: 9px;
+}
+
+.form-group label {
+  color: #17233a;
+
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.input-container {
+  height: 50px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 16px;
+
+  border: 1px solid #cfd9e8;
+  border-radius: 10px;
+
+  background-color: #ffffff;
+}
+
+.input-container:focus-within {
+  border-color: #1769ff;
+
+  box-shadow:
+    0 0 0 3px rgba(23, 105, 255, 0.1);
+}
+
+.input-icon {
+  margin-right: 12px;
+
+  color: #8393ab;
+
+  font-size: 20px;
+}
+
+.input-container input {
+  flex: 1;
+
+  height: 100%;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  color: #17233a;
+
+  font-size: 17px;
+}
+
+.input-container input::placeholder {
+  color: #8998ad;
+}
+
+.password-toggle {
+  border: none;
+  background: transparent;
+
+  cursor: pointer;
+
+  font-size: 19px;
+}
+
+.login-button {
+  height: 60px;
+
+  margin-top: 8px;
+
+  border: none;
+  border-radius: 10px;
+
+  background-color: #1265f3;
+  color: #ffffff;
+
+  cursor: pointer;
+
+  font-size: 18px;
+  font-weight: 600;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
+}
+
+.login-button:hover {
+  background-color: #0d55d0;
+}
+
+.login-button:active {
+  transform: scale(0.99);
+}
+
+@media (max-width: 600px) {
+  .login-card {
+    padding: 32px 24px;
+  }
+
+  .login-brand h1 {
+    font-size: 32px;
+  }
+}
+

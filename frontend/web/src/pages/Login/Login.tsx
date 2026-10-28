@@ -1,87 +1,86 @@
-import { useState } from "react";
-import type { ChangeEvent, FormEvent } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { FaUser, FaLock, FaEye } from "react-icons/fa";
+import { FiBox } from "react-icons/fi";
 
-import { IoLogoAndroid } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 
-import styles from "./Login.module.css"
-
-interface LoginForm {
-    username: string;
-    password: string;
-}
+import "./Login.css";
 
 
-const Login = () => {
+function Login() {
+    const navigate = useNavigate();
 
-    const navigate = useNavigate()
+    function handleLogin(event: React.FormEvent<HTMLFormElement>) {
+        event.preventDefault();
 
-    const [form, setForm] = useState<LoginForm>({ username: "", password: "" });
-    const [error, setError] = useState<string>("");
-
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const {name, value} = e.target;
-        setForm((prev) => ({ ...prev, [name]: value}));
+        navigate("/clientes")
     }
 
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault(); // Evita la recarga de la página
-
-        // aquí se valida usuario y contraseña que no estén vacíos
-        if (!form.username.trim() || !form.password.trim()) {
-            setError("Debes completar usuario y contraseña.");
-            return;
-        }
-
-        setError("");
-
-
-        // Mostrar los datos en la consola
-        console.log("Usuario:", form.username);
-        console.log("Password:", form.password);
-
-        navigate("/home")
-
-    };
-
     return (
+        <main className="login-page">
+        <section className="login-card">
 
-        <form onSubmit={handleSubmit} className={styles.formContainer} noValidate>
-            <h1>Login</h1>
+            <div className="login-brand">
+            <FiBox className="login-logo"/>
 
-            <IoLogoAndroid title="Logo" className="logo"/>
+            <h1>SendBox</h1>
+            </div>
 
-            <label htmlFor="username" className={styles.srOnly}>Usuario</label>
-            <input 
-                id="username"
-                name="username"
-                type="text" 
-                placeholder="Usuario" 
-                value={form.username} 
-                onChange={handleChange} 
-            />
+            <form className="login-form" onSubmit={handleLogin}>
 
-            <label htmlFor="password" className={styles.srOnly}>Contraseña</label>
-            <input 
-                id="password"
-                name="password"
-                type="password" 
-                placeholder="Contraseña" 
-                value={form.password} 
-                onChange={handleChange} 
-            />
+            <div className="form-group">
+                <label htmlFor="document">
+                Usuario
+                </label>
 
-            {error && <p role="alert" className={styles.error}>{error}</p>}
+                <div className="input-container">
+                <FaUser className="input-icon"/>
 
-            <button type="submit" className={styles.submitButton}>
-                {/* Entra directamente a home */}
-                Ingresar
+                <input
+                    id="document"
+                    name="document"
+                    type="text"
+                    placeholder="Ej. 1098765432"
+                />
+                </div>
+            </div>
+
+            <div className="form-group">
+                <label htmlFor="password">
+                Contraseña
+                </label>
+
+                <div className="input-container">
+                <FaLock className="input-icon"/>
+
+                <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    placeholder="Ingresa tu contraseña"
+                />
+
+                <button
+                    className="password-toggle"
+                    type="button"
+                    aria-label="Mostrar contraseña"
+                >
+                    <FaEye className="input-icon"/>
+                </button>
+                </div>
+            </div>
+
+            <button
+                className="login-button"
+                type="submit"
+            >
+                Iniciar sesión
             </button>
 
-            <Link to="/v1/password-resets">¿Olvidaste tu Contraseña?</Link>
-        </form>
+            </form>
 
+        </section>
+        </main>
     );
-};
+}
 
 export default Login;
