@@ -1,0 +1,405 @@
+.couriers-layout {
+  height: 100vh;
+
+  display: flex;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f8fbff 0%,
+      #eef5fd 100%
+    );
+}
+
+/* =========================
+   CONTENIDO PRINCIPAL
+   ========================= */
+
+.couriers-main {
+  flex: 1;
+
+  height: 100vh;
+  min-width: 0;
+
+  overflow-y: auto;
+
+  padding: 28px 40px 40px;
+}
+
+/* =========================
+   ENCABEZADO
+   ========================= */
+
+.couriers-header {
+  margin-bottom: 32px;
+}
+
+.couriers-header h1 {
+  margin: 0 0 6px;
+
+  color: #13233e;
+
+  font-size: 38px;
+  font-weight: 700;
+}
+
+.couriers-header p {
+  margin: 0;
+
+  color: #75849c;
+
+  font-size: 17px;
+}
+
+/* =========================
+   CONTENEDOR
+   ========================= */
+
+.couriers-content {
+  overflow: hidden;
+
+  background-color: #ffffff;
+
+  border: 1px solid #dce5f0;
+  border-radius: 12px;
+
+  box-shadow:
+    0 8px 28px rgba(24, 47, 76, 0.05);
+}
+
+/* =========================
+   BUSCADOR
+   ========================= */
+
+.couriers-search {
+  height: 56px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  margin: 26px 26px 22px;
+  padding: 0 16px;
+
+  border: 1px solid #ccd8e8;
+  border-radius: 8px;
+
+  background-color: #ffffff;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.couriers-search:focus-within {
+  border-color: #1265f3;
+
+  box-shadow:
+    0 0 0 3px rgba(18, 101, 243, 0.1);
+}
+
+.couriers-search svg {
+  flex-shrink: 0;
+
+  color: #657892;
+
+  font-size: 22px;
+}
+
+.couriers-search input {
+  width: 100%;
+  height: 100%;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  color: #17243c;
+
+  font-size: 16px;
+}
+
+.couriers-search input::placeholder {
+  color: #8796ab;
+}
+
+/* =========================
+   TABLA
+   ========================= */
+
+.couriers-table-container {
+  overflow-x: auto;
+
+  margin: 0 26px;
+
+  border: 1px solid #e0e7f0;
+  border-radius: 9px;
+}
+
+.couriers-table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  color: #243654;
+
+  font-size: 15px;
+}
+
+.couriers-table thead {
+  background-color: #f6f9fd;
+}
+
+.couriers-table th {
+  padding: 18px 24px;
+
+  border-bottom: 1px solid #e0e7f0;
+
+  color: #17243c;
+
+  font-weight: 600;
+  text-align: left;
+
+  white-space: nowrap;
+}
+
+.couriers-table td {
+  padding: 14px 24px;
+
+  border-bottom: 1px solid #e5ebf3;
+
+  vertical-align: middle;
+}
+
+.couriers-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.couriers-table tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+.couriers-table tbody tr:hover {
+  background-color: #f9fbfe;
+}
+
+.courier-name {
+  font-weight: 500;
+}
+
+/* =========================
+   ESTADOS
+   ========================= */
+
+.courier-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 110px;
+
+  padding: 7px 12px;
+
+  border-radius: 6px;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.badge-active,
+.badge-enabled {
+  background-color: #d9f7e6;
+  color: #078a42;
+}
+
+.badge-inactive,
+.badge-disabled {
+  background-color: #ffe1e1;
+  color: #e33232;
+}
+
+/* =========================
+   DOMICILIOS ACTIVOS
+   ========================= */
+
+.courier-shipments {
+  font-weight: 500;
+  text-align: center;
+}
+
+/* =========================
+   ACCIONES
+   ========================= */
+
+.couriers-action-column {
+  text-align: center !important;
+}
+
+.couriers-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+}
+
+.couriers-view-button {
+  min-width: 76px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  padding: 0 12px;
+
+  border: 1px solid #cedbeb;
+  border-radius: 7px;
+
+  background-color: #f8fbff;
+  color: #075bd8;
+
+  cursor: pointer;
+
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.couriers-view-button:hover {
+  background-color: #edf5ff;
+}
+
+.couriers-view-button svg {
+  font-size: 18px;
+}
+
+.couriers-more-button {
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 6px;
+
+  background: transparent;
+  color: #304763;
+
+  cursor: pointer;
+
+  font-size: 20px;
+}
+
+.couriers-more-button:hover {
+  background-color: #f0f4f9;
+}
+
+/* =========================
+   SIN RESULTADOS
+   ========================= */
+
+.couriers-empty {
+  padding: 50px 20px !important;
+
+  color: #7a899d;
+
+  text-align: center;
+}
+
+/* =========================
+   FOOTER / PAGINACIÓN
+   ========================= */
+
+.couriers-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 22px 26px;
+}
+
+.couriers-footer > span {
+  color: #7789a3;
+
+  font-size: 14px;
+}
+
+.couriers-pagination {
+  display: flex;
+
+  gap: 6px;
+}
+
+.couriers-pagination button {
+  min-width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #d4deeb;
+  border-radius: 6px;
+
+  background-color: #ffffff;
+  color: #33465f;
+
+  cursor: pointer;
+
+  font-size: 14px;
+}
+
+.couriers-pagination button:hover:not(:disabled) {
+  background-color: #f0f5fb;
+}
+
+.couriers-pagination button:disabled {
+  opacity: 0.45;
+
+  cursor: not-allowed;
+}
+
+.couriers-pagination .pagination-active {
+  border-color: #1265f3;
+
+  background-color: #1265f3;
+  color: #ffffff;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 1000px) {
+
+  .couriers-main {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 750px) {
+
+  .sidebar {
+    display: none;
+  }
+
+  .couriers-main {
+    padding: 18px;
+  }
+
+  .couriers-footer {
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+}
