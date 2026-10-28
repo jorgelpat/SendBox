@@ -1,0 +1,453 @@
+/* =========================
+   LAYOUT
+   ========================= */
+
+.create-user-layout {
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f8fbff 0%,
+      #eef5fd 100%
+    );
+}
+
+/*
+  Solo esta parte puede hacer scroll.
+  El Sidebar permanece quieto.
+*/
+.create-user-main {
+  flex: 1;
+
+  height: 100vh;
+
+  padding: 24px 36px 30px;
+
+  overflow-y: auto;
+}
+
+/* =========================
+   BREADCRUMB
+   ========================= */
+
+.create-user-breadcrumb {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 22px;
+
+  color: #7486a2;
+
+  font-size: 15px;
+}
+
+.create-user-breadcrumb button {
+  padding: 0;
+
+  border: none;
+
+  background: transparent;
+  color: #607a9f;
+
+  cursor: pointer;
+
+  font-size: 15px;
+}
+
+.create-user-breadcrumb button:hover {
+  color: #1265f3;
+}
+
+.create-user-breadcrumb svg {
+  color: #9aabc0;
+  font-size: 18px;
+}
+
+.create-user-breadcrumb span {
+  color: #536b8b;
+}
+
+/* =========================
+   ENCABEZADO
+   ========================= */
+
+.create-user-header {
+  margin-bottom: 24px;
+}
+
+.create-user-header h1 {
+  margin: 0 0 8px;
+
+  color: #14233b;
+
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.create-user-header p {
+  margin: 0;
+
+  color: #7485a0;
+
+  font-size: 16px;
+}
+
+/* =========================
+   TARJETA
+   ========================= */
+
+.create-user-card {
+  padding: 24px 26px 28px;
+
+  background-color: #ffffff;
+
+  border: 1px solid #d9e3ef;
+  border-radius: 12px;
+
+  box-shadow:
+    0 8px 28px rgba(25, 48, 78, 0.04);
+}
+
+.create-user-card h2 {
+  margin: 0 0 26px;
+
+  color: #17243c;
+
+  font-size: 22px;
+  font-weight: 700;
+}
+
+/* =========================
+   CAMPOS
+   ========================= */
+
+.create-user-fields {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 28px 24px;
+
+  margin-bottom: 28px;
+}
+
+.create-user-field {
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.role-field {
+  max-width: 100%;
+}
+
+.create-user-field label {
+  color: #17243c;
+
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.create-user-field label span {
+  color: #e52525;
+}
+
+.create-user-field small {
+  color: #788ba7;
+
+  font-size: 13px;
+}
+
+/* =========================
+   INPUT CON ICONO
+   ========================= */
+
+.create-user-input {
+  height: 50px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 0 15px;
+
+  border: 1px solid #cfdbea;
+  border-radius: 7px;
+
+  background-color: #ffffff;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.create-user-input:focus-within {
+  border-color: #1265f3;
+
+  box-shadow:
+    0 0 0 3px rgba(18, 101, 243, 0.08);
+}
+
+.create-user-input svg {
+  flex-shrink: 0;
+
+  color: #8191a8;
+
+  font-size: 22px;
+}
+
+.create-user-input input {
+  width: 100%;
+  height: 100%;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+  color: #17243c;
+
+  font-size: 15px;
+}
+
+.create-user-input input::placeholder {
+  color: #8b9ab0;
+}
+
+/* =========================
+   SELECT
+   ========================= */
+
+.create-user-field select {
+  width: 100%;
+  height: 50px;
+
+  padding: 0 15px;
+
+  border: 1px solid #cfdbea;
+  border-radius: 7px;
+
+  outline: none;
+
+  background-color: #ffffff;
+  color: #17243c;
+
+  cursor: pointer;
+
+  font-size: 15px;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.create-user-field select:focus {
+  border-color: #1265f3;
+
+  box-shadow:
+    0 0 0 3px rgba(18, 101, 243, 0.08);
+}
+
+/* =========================
+   BLOQUES DE INFORMACIÓN
+   ========================= */
+
+.create-user-alert {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 16px;
+
+  padding: 18px 20px;
+
+  margin-bottom: 16px;
+
+  border-radius: 9px;
+}
+
+.create-user-alert > svg {
+  flex-shrink: 0;
+
+  margin-top: 2px;
+
+  font-size: 25px;
+}
+
+.create-user-alert strong {
+  display: block;
+
+  margin-bottom: 8px;
+
+  font-size: 15px;
+}
+
+.create-user-alert ul {
+  margin: 0;
+
+  padding-left: 18px;
+}
+
+.create-user-alert li {
+  margin: 5px 0;
+
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* =========================
+   INFORMACIÓN DE ROLES
+   ========================= */
+
+.role-information {
+  border: 1px solid #cfe4ff;
+
+  background-color: #eaf4ff;
+  color: #0b4498;
+}
+
+.role-information > svg {
+  color: #0876f9;
+}
+
+/* =========================
+   IMPORTANTE
+   ========================= */
+
+.important-information {
+  border: 1px solid #fae2b7;
+
+  background-color: #fff5e4;
+  color: #34455f;
+}
+
+.important-information > svg,
+.important-information strong {
+  color: #d56a00;
+}
+
+/* =========================
+   BOTONES
+   ========================= */
+
+.create-user-actions {
+  display: flex;
+  justify-content: flex-end;
+
+  gap: 14px;
+
+  margin-top: 26px;
+}
+
+.create-user-cancel,
+.create-user-submit {
+  height: 48px;
+
+  padding: 0 22px;
+
+  border-radius: 7px;
+
+  cursor: pointer;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
+}
+
+/* Cancelar */
+
+.create-user-cancel {
+  border: 1px solid #cad7e5;
+
+  background-color: #ffffff;
+  color: #354a65;
+}
+
+.create-user-cancel:hover {
+  background-color: #f5f8fc;
+}
+
+/* Crear */
+
+.create-user-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  border: none;
+
+  background-color: #0867f2;
+  color: #ffffff;
+
+  box-shadow:
+    0 5px 14px rgba(8, 103, 242, 0.18);
+}
+
+.create-user-submit:hover {
+  background-color: #0759d3;
+}
+
+.create-user-submit:active,
+.create-user-cancel:active {
+  transform: scale(0.98);
+}
+
+.create-user-submit svg {
+  font-size: 20px;
+}
+
+/* =========================
+   PANTALLAS MEDIANAS
+   ========================= */
+
+@media (max-width: 1000px) {
+  .create-user-main {
+    padding: 22px 26px;
+  }
+}
+
+/* =========================
+   PANTALLAS PEQUEÑAS
+   ========================= */
+
+@media (max-width: 750px) {
+  .create-user-main {
+    padding: 18px;
+  }
+
+  .create-user-header h1 {
+    font-size: 30px;
+  }
+
+  .create-user-fields {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .create-user-card {
+    padding: 20px;
+  }
+
+  .create-user-actions {
+    flex-direction: column-reverse;
+  }
+
+  .create-user-cancel,
+  .create-user-submit {
+    width: 100%;
+  }
+}
