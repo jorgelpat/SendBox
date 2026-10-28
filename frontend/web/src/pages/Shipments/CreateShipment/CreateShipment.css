@@ -1,0 +1,400 @@
+.create-shipment-layout {
+  height: 100vh;
+
+  display: flex;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f8fbff 0%,
+      #eef5fd 100%
+    );
+}
+
+/* =========================
+   CONTENIDO PRINCIPAL
+   ========================= */
+
+.create-shipment-main {
+  flex: 1;
+
+  height: 100vh;
+  min-width: 0;
+
+  overflow-y: auto;
+
+  padding: 26px 36px 36px;
+}
+
+/* =========================
+   BREADCRUMB
+   ========================= */
+
+.create-shipment-breadcrumb {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  margin-bottom: 20px;
+
+  color: #6f8099;
+
+  font-size: 15px;
+}
+
+.create-shipment-breadcrumb button {
+  padding: 0;
+
+  border: none;
+
+  background: transparent;
+  color: #58729a;
+
+  cursor: pointer;
+
+  font-size: inherit;
+}
+
+.create-shipment-breadcrumb button:hover {
+  color: #1265f3;
+}
+
+.create-shipment-breadcrumb svg {
+  font-size: 17px;
+}
+
+/* =========================
+   ENCABEZADO
+   ========================= */
+
+.create-shipment-header {
+  margin-bottom: 28px;
+}
+
+.create-shipment-header h1 {
+  margin: 0 0 6px;
+
+  color: #13233e;
+
+  font-size: 38px;
+  font-weight: 700;
+}
+
+.create-shipment-header p {
+  margin: 0;
+
+  color: #75849c;
+
+  font-size: 17px;
+}
+
+/* =========================
+   FORMULARIO
+   ========================= */
+
+.create-shipment-form {
+  display: flex;
+  flex-direction: column;
+
+  gap: 16px;
+}
+
+/* =========================
+   SECCIONES
+   ========================= */
+
+.shipment-section {
+  padding: 22px;
+
+  background-color: #ffffff;
+
+  border: 1px solid #dce5f0;
+  border-radius: 12px;
+
+  box-shadow:
+    0 6px 22px rgba(24, 47, 76, 0.04);
+}
+
+.shipment-client-section {
+  width: 100%;
+}
+
+.shipment-section-header {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 15px;
+
+  margin-bottom: 22px;
+}
+
+.shipment-section-header > svg {
+  flex-shrink: 0;
+
+  margin-top: 2px;
+
+  color: #1265f3;
+
+  font-size: 27px;
+}
+
+.shipment-section-header h2 {
+  margin: 0 0 4px;
+
+  color: #17243c;
+
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.shipment-section-header p {
+  margin: 0;
+
+  color: #7889a3;
+
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* =========================
+   COLUMNAS
+   ========================= */
+
+.shipment-two-columns {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 16px;
+}
+
+/* =========================
+   CAMPOS
+   ========================= */
+
+.shipment-field {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: px;
+
+  margin-bottom: 16px;
+}
+
+.shipment-field:last-child {
+  margin-bottom: 0;
+}
+
+.shipment-field label {
+  color: #17243c;
+
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.shipment-field label span {
+  color: #e53935;
+}
+
+.shipment-field input,
+.shipment-field select,
+.shipment-field textarea {
+  width: 100%;
+
+  border: 1px solid #ccd8e8;
+  border-radius: 8px;
+
+  outline: none;
+
+  background-color: #ffffff;
+  color: #17243c;
+
+  font: inherit;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.shipment-field input,
+.shipment-field select {
+  height: 48px;
+
+  padding: 0 14px;
+}
+
+.shipment-field textarea {
+  min-height: 128px;
+
+  padding: 14px;
+
+  resize: vertical;
+}
+
+.shipment-field input:focus,
+.shipment-field select:focus,
+.shipment-field textarea:focus {
+  border-color: #1265f3;
+
+  box-shadow:
+    0 0 0 3px rgba(18, 101, 243, 0.1);
+}
+
+.shipment-field input::placeholder,
+.shipment-field textarea::placeholder {
+  color: #8a99ae;
+}
+
+.shipment-field small {
+  align-self: flex-end;
+
+  color: #8593a8;
+
+  font-size: 12px;
+}
+
+/* =========================
+   MENSAJE INFORMATIVO
+   ========================= */
+
+.shipment-info {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 10px;
+
+  margin-top: 10px;
+  padding: 12px 14px;
+
+  border: 1px solid #cde2ff;
+  border-radius: 7px;
+
+  background-color: #eaf4ff;
+  color: #075ccf;
+}
+
+.shipment-info svg {
+  flex-shrink: 0;
+
+  margin-top: 1px;
+
+  font-size: 18px;
+}
+
+.shipment-info p {
+  margin: 0;
+
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+/* =========================
+   BOTONES
+   ========================= */
+
+.create-shipment-actions {
+  display: flex;
+  justify-content: flex-end;
+
+  gap: 14px;
+
+  padding: 16px 0 0;
+}
+
+.shipment-cancel-button,
+.shipment-save-button {
+  height: 50px;
+
+  padding: 0 22px;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.shipment-cancel-button {
+  border: 1px solid #ccd8e8;
+
+  background-color: #ffffff;
+  color: #33465f;
+}
+
+.shipment-cancel-button:hover {
+  background-color: #f4f7fb;
+}
+
+.shipment-save-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  border: none;
+
+  background-color: #1265f3;
+  color: #ffffff;
+
+  box-shadow:
+    0 6px 14px rgba(18, 101, 243, 0.16);
+}
+
+.shipment-save-button:hover {
+  background-color: #0d55d0;
+}
+
+.shipment-save-button svg {
+  font-size: 18px;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 950px) {
+
+  .create-shipment-main {
+    padding: 24px;
+  }
+
+  .shipment-two-columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 750px) {
+
+  .sidebar {
+    display: none;
+  }
+
+  .create-shipment-main {
+    padding: 18px;
+  }
+
+  .create-shipment-header h1 {
+    font-size: 30px;
+  }
+
+  .shipment-section {
+    padding: 18px;
+  }
+
+  .create-shipment-actions {
+    flex-direction: column-reverse;
+  }
+
+  .shipment-cancel-button,
+  .shipment-save-button {
+    width: 100%;
+  }
+}
