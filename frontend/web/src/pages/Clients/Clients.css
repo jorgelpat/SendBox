@@ -393,7 +393,8 @@
 @media (max-width: 1000px) {
 
   .clients-main {
-    padding: 24px;
+    /* padding: 24px; */
+    padding-top: 88px;
   }
 
   .clients-header {
