@@ -1,0 +1,24 @@
+# Dependencias
+node_modules/
+**/node_modules/
+
+# Builds de React/Vite
+dist/
+**/dist/
+
+# Archivos de entorno
+.env
+.env.*
+!.env.example
+
+# Vite
+.vite/
+**/.vite/
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# guias
+comandos-git.md
+mi_guia_paso_a_paso.md
