@@ -297,10 +297,6 @@
 
 @media (max-width: 900px) {
 
-  .sidebar {
-    display: none;
-  }
-
   .create-client-main {
     padding: 24px;
   }

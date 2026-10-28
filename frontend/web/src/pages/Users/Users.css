@@ -474,12 +474,13 @@
 
 @media (max-width: 750px) {
 
-  .sidebar {
+  /* .sidebar {
     display: none;
-  }
+  } */
 
   .users-main {
-    padding: 18px;
+    /* padding: 18px; */
+    padding-top: 88px;
   }
 
   .users-header {

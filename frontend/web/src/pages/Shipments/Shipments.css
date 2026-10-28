@@ -455,8 +455,12 @@
 
 @media (max-width: 750px) {
 
-  .sidebar {
+  /* .sidebar {
     display: none;
+  } */
+
+  .shipments-main {
+    padding-top: 88px;
   }
 
   .shipments-header {

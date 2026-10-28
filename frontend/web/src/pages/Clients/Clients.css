@@ -403,9 +403,9 @@
 
 @media (max-width: 750px) {
 
-  .sidebar {
+  /* .sidebar {
     display: none;
-  }
+  } */
 
   .clients-header {
     flex-direction: column;
