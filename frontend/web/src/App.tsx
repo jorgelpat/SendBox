@@ -1,16 +1,15 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
-import MainLayout from './components/MainLayout';
 import Login from './pages/Login/Login';
-import Home from './pages/Home';
-import PasswordResets from './pages/PasswordResets';
-import CreateDelivery from './pages/CreateDelivery/CreateDelivery';
-import CreateClient from './pages/CreateClient/CreateClient';
-import CreateUser from './pages/CreateUser/CreateUser';
-import Payments from './pages/Payments';
-import DeliveryHistory from './pages/DeliveryHistory';
+import Clients from './pages/Clients/Clients';
+import CreateClient from './pages/Clients/CreateClient/CreateClient';
+import Shipments from './pages/Shipments/Shipments';
+import CreateShipment from './pages/Shipments/CreateShipment/CreateShipment';
+import Couriers from './pages/Couriers/Couriers';
 
 import './App.css';
+import Users from './pages/Users/Users';
+import CreateUser from './pages/Users/CreateUser/CreateUser';
 
 
 function App() {
@@ -18,24 +17,34 @@ function App() {
     <>
       <Router>
         
-          <Routes>
+        <Routes>
 
-            {/* Login */}
-            <Route path="/" element={<Navigate to="/login" replace />} />
-            <Route path="/login" element={<Login />} />
+          {/* Login */}
+          <Route path="/" element={<Navigate to="/login" replace />} />
+          <Route path="/login" element={<Login />} />
 
-            <Route element={<MainLayout />}>
-              <Route path="/home" element={<Home />} />
-              <Route path="/create-delivery" element={<CreateDelivery />} />
-              <Route path="/my-deliveries" element={<DeliveryHistory />} />
-              <Route path="/create-client" element={<CreateClient />} />
-              <Route path="/create-user" element={<CreateUser />} />
-              <Route path="/payments" element={<Payments />} />
-            </Route>
+          {/* Cliente */}
+          <Route path="/clientes" element={<Clients />} />
 
-            <Route path="/v1/password-resets" element={<PasswordResets />}/>
+          {/* Crear Cliente */}
+          <Route path="/clientes/crear" element={<CreateClient />} />
 
-          </Routes>
+          {/* Domicilios */}
+          <Route path="/domicilios" element={<Shipments />} />
+
+          {/* Crear Domicilios */}
+          <Route path="/domicilios/crear" element={<CreateShipment />} />
+
+          {/* Mensajeros */}
+          <Route path="/mensajeros" element={<Couriers />} />
+
+          {/* Usuarios */}
+          <Route path="/usuarios" element={<Users />} />
+
+          {/* Crear Usuario */}
+          <Route path="/usuarios/crear" element={<CreateUser />} />
+
+        </Routes>
 
       </Router>
     </>
