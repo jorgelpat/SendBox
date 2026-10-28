@@ -11,9 +11,9 @@ import { NavLink, useNavigate } from "react-router-dom";
 
 import "./Sidebar.css";
 
-type SidebarProps = {
-  activePage?: "clients" | "shipments" | "couriers" | "users";
-};
+// type SidebarProps = {
+//   activePage?: "clients" | "shipments" | "couriers" | "users";
+// };
 
 function Sidebar() {
     const navigate = useNavigate();
