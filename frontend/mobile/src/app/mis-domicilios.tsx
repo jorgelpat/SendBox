@@ -1,14 +1,5 @@
-import {
-  SafeAreaView,
-  Text,
-} from "react-native";
+import MyShipments from "../pages/MyShipments/MyShipments";
 
-export default function MyShipments() {
-  return (
-    <SafeAreaView>
-      <Text>
-        Mis domicilios
-      </Text>
-    </SafeAreaView>
-  );
+export default function MyShipmentsRoute() {
+  return <MyShipments />;
 }
