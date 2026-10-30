@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useRouter } from "expo-router";
 
 import {
   View,
@@ -13,6 +14,8 @@ import {
 
 import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 
+const router = useRouter();
+
 export default function Login() {
   const [document, setDocument] = useState("");
   const [password, setPassword] = useState("");
@@ -23,6 +26,8 @@ export default function Login() {
       document,
       password,
     });
+
+    router.replace("/disponibles")
   }
 
   return (
