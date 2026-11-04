@@ -77,10 +77,10 @@ export default function Login() {
                 Ingresa tus datos para continuar
             </Text>
 
-            {/* Documento */}
+            {/* Usuario */}
             <View style={styles.field}>
                 <Text style={styles.label}>
-                    Documento
+                    Usuario
                 </Text>
 
                 <View style={styles.inputContainer}>
