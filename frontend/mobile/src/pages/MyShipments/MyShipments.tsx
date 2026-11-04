@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useRouter } from "expo-router";
 
 import {
   ScrollView,
@@ -55,6 +56,8 @@ const myShipments: Shipment[] = [
 ];
 
 export default function MyShipments() {
+  const router = useRouter();
+
   const [menuOpen, setMenuOpen] = useState(false);
 
   function getClientIcon(icon: Shipment["icon"]) {
@@ -88,7 +91,12 @@ export default function MyShipments() {
   }
 
   function handleViewDetail(shipmentId: number) {
-    console.log("Ver domicilio:", shipmentId);
+    router.push({
+      pathname: "/domicilios/[id]",
+      params: {
+        id: shipmentId.toString(),
+      },
+    });
 
     /*
       Más adelante aquí navegaremos
