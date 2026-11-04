@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import {
+  Modal,
   ScrollView,
   StyleSheet,
   Text,
@@ -22,15 +24,24 @@ type Shipment = {
   pickup: string;
   delivery: string;
   icon: "company" | "person" | "store";
+
+  // Solo para simular el comportamiento ya que no hay backend aún
+  canAssign: boolean;
 };
 
-const availableShipments: Shipment[] = [
+type AssignmentResult = 
+  | "success"
+  | "unavailable"
+  | null;
+
+const initialShipments: Shipment[] = [
   {
     id: 1,
     client: "Empresa ABC",
     pickup: "Cabecera",
     delivery: "Cañaveral",
     icon: "company",
+    canAssign: true,
   },
   {
     id: 2,
@@ -38,6 +49,8 @@ const availableShipments: Shipment[] = [
     pickup: "Centro",
     delivery: "Provenza",
     icon: "person",
+    // Simula que ya no está disponible
+    canAssign: false,
   },
   {
     id: 3,
@@ -45,11 +58,17 @@ const availableShipments: Shipment[] = [
     pickup: "San Alonso",
     delivery: "Real de Minas",
     icon: "store",
+    canAssign: true,
   },
 ];
 
 export default function AvailableShipments() {
+  const router = useRouter();
+
   const [menuOpen, setMenuOpen] = useState(false);
+  const [shipments, setShipments] = useState(initialShipments);
+  const [selectedShipment, setSelectedShipment] = useState<Shipment | null>(null);
+  const [assignmentResult, setAssignmentResult] = useState<AssignmentResult>(null);
 
   function getClientIcon(icon: Shipment["icon"]) {
     if (icon === "person") {
@@ -81,16 +100,54 @@ export default function AvailableShipments() {
     );
   }
 
-  function handleViewDetail(shipmentId: number) {
-    console.log("Ver domicilio:", shipmentId);
+  function handleTakeShipment(
+    shipment: Shipment
+  ) {
+    setSelectedShipment(shipment);
+    // Aquí irá la respuesta del backend
 
-    /*
-      Más adelante aquí navegaremos a:
+    if (shipment.canAssign) {
+      setAssignmentResult("success");
 
-      /domicilios/[id]
+      // lo quitamos de disponibles porque ya fue tomado
 
-      Por ahora solo estamos maquetando.
-    */
+      setShipments((current) => 
+        current.filter(
+          (item) => item.id !== shipment.id
+        )
+      );
+    } else {
+      setAssignmentResult("unavailable");
+    }
+  }
+
+  function closeModal() {
+    setAssignmentResult(null);
+    setSelectedShipment(null);
+  }
+
+  function goToMyShipments() {
+    closeModal();
+
+    router.push("/mis-domicilios");
+  }
+
+  function continueViewing() {
+    closeModal();
+  }
+
+  function refreshList() {
+    if (selectedShipment) {
+      // aquí se simula que al actualizar desaparece el domicilio que tomó otro mensajero
+      setShipments((current) =>
+        current.filter(
+          (item) =>
+            item.id !== selectedShipment.id
+        )
+      );
+    }
+
+    closeModal();
   }
 
   return (
@@ -98,7 +155,6 @@ export default function AvailableShipments() {
       {/* =========================
           HEADER
           ========================= */}
-
       <View style={styles.header}>
         <TouchableOpacity
           style={styles.menuButton}
@@ -129,34 +185,38 @@ export default function AvailableShipments() {
       {/* =========================
           CONTENIDO
           ========================= */}
-
       <ScrollView
         style={styles.scroll}
         contentContainerStyle={styles.content}
         showsVerticalScrollIndicator={false}
       >
         {/* Encabezado */}
-
         <View style={styles.pageHeader}>
-          <Text style={styles.title}>
-            Domicilios disponibles
-          </Text>
+          <View>
+            <Text style={styles.title}>
+              Domicilios disponibles
+            </Text>
 
-          <Text style={styles.subtitle}>
-            Servicios que puedes tomar ahora
-          </Text>
+            <Text style={styles.subtitle}>
+              Servicios que puedes tomar ahora
+            </Text>
+          </View>
+
+          <View style={styles.countBadge}>
+            <Text style={styles.countText}>
+              {shipments.length}
+            </Text>
+          </View>
         </View>
 
         {/* Lista */}
-
         <View style={styles.shipmentsList}>
-          {availableShipments.map((shipment) => (
+          {shipments.map((shipment) => (
             <View
               key={shipment.id}
               style={styles.card}
             >
               {/* Cliente */}
-
               <View style={styles.cardHeader}>
                 <View style={styles.client}>
                   <View style={styles.clientIcon}>
@@ -178,11 +238,9 @@ export default function AvailableShipments() {
               </View>
 
               {/* Línea */}
-
               <View style={styles.divider} />
 
               {/* Recogida */}
-
               <View style={styles.locationRow}>
                 <View style={styles.locationIcon}>
                   <MaterialCommunityIcons
@@ -204,11 +262,9 @@ export default function AvailableShipments() {
               </View>
 
               {/* Línea */}
-
               <View style={styles.locationDivider} />
 
               {/* Entrega */}
-
               <View style={styles.locationRow}>
                 <View style={styles.locationIcon}>
                   <MaterialCommunityIcons
@@ -230,15 +286,14 @@ export default function AvailableShipments() {
               </View>
 
               {/* Botón */}
-
               <TouchableOpacity
-                style={styles.detailButton}
+                style={styles.takeButton}
                 onPress={() =>
-                  handleViewDetail(shipment.id)
+                  handleTakeShipment(shipment)
                 }
                 activeOpacity={0.85}
               >
-                <Text style={styles.detailButtonText}>
+                <Text style={styles.takeButtonText}>
                   Tomar domicilio
                 </Text>
 
@@ -250,6 +305,24 @@ export default function AvailableShipments() {
               </TouchableOpacity>
             </View>
           ))}
+
+          {shipments.length === 0 && (
+            <View style={styles.emptyCard}>
+              <MaterialCommunityIcons
+                name="package-variant"
+                size={45}
+                color="#91a4ba"
+              />
+
+              <Text style={styles.emptyTitle}>
+                No hay domicilios disponibles
+              </Text>
+
+              <Text style={styles.emptyText}>
+                Cuando hayan nuevos servicios apareceran en esta sección
+              </Text>
+            </View>
+          )}
         </View>
       </ScrollView>
 
@@ -262,6 +335,112 @@ export default function AvailableShipments() {
         onClose={() => setMenuOpen(false)}
         activePage="disponibles"
       />
+
+      {/* Modal Resultado */}
+      <Modal 
+        visible={assignmentResult !== null}
+        transparent
+        animationType="fade"
+        onRequestClose={closeModal}
+      >
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalCard}>
+            {assignmentResult === "success" && (
+              <>
+                <View 
+                  style={[
+                    styles.resultIcon, 
+                    styles.successIcon,
+                  ]}
+                >
+                  <Feather
+                    name="check"
+                    size={32}
+                    color="#08af74"
+                  />
+                </View>
+
+                <Text style={styles.modalTitle}>
+                  Domicilio asignado
+                </Text>
+
+                <Text style={styles.modalDescription}>
+                  El domicilio fue asignado correctamente
+                  Ya puedes consultarlo en Mis domicilios
+                </Text>
+
+                <TouchableOpacity
+                  style={styles.primaryButton}
+                  onPress={goToMyShipments}
+                  activeOpacity={0.85}
+                >
+                  <Text style={styles.primaryButtonText}>
+                    Ir a Mis domicilios
+                  </Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  style={styles.secondaryButton}
+                  onPress={continueViewing}
+                  activeOpacity={0.8}
+                >
+                  <Text style={styles.secondaryButtonText}>
+                    Seguir viendo disponibles
+                  </Text>
+                </TouchableOpacity>
+              </>
+            )}
+
+            {assignmentResult === "unavailable" && (
+              <>
+                <View 
+                  style={[
+                    styles.resultIcon, 
+                    styles.errorIcon,
+                  ]}
+                >
+                  <Feather
+                    name="alert-circle"
+                    size={31}
+                    color="#ef4050"
+                  />
+                </View>
+
+                <Text style={styles.modalTitle}>
+                  Domicilio no disponible
+                </Text>
+
+                <Text style={styles.modalDescription}>
+                  Este domicilio acaba de ser tomado
+                  por otro mensajero. Actualiza la
+                  lista para consultar los servicios
+                  que siguen disponibles.
+                </Text>
+
+                <TouchableOpacity
+                  style={styles.primaryButton}
+                  onPress={refreshList}
+                  activeOpacity={0.85}
+                >
+                  <Text style={styles.primaryButtonText}>
+                    Actualizar lista
+                  </Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  style={styles.secondaryButton}
+                  onPress={closeModal}
+                  activeOpacity={0.8}
+                >
+                  <Text style={styles.secondaryButtonText}>
+                    Volver
+                  </Text>
+                </TouchableOpacity>
+              </>
+            )}
+          </View>
+        </View>
+      </Modal>
     </SafeAreaView>
   );
 }
@@ -341,6 +520,10 @@ const styles = StyleSheet.create({
      ========================= */
 
   pageHeader: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+    justifyContent: "space-between",
+
     marginBottom: 22,
   },
 
@@ -357,6 +540,23 @@ const styles = StyleSheet.create({
     color: "#6f819b",
 
     fontSize: 17,
+  },
+
+  countBadge: {
+    minWidth: 36,
+    height: 36,
+
+    alignItems: "center",
+    justifyContent: "center",
+
+    borderRadius: 18,
+
+    backgroundColor: "#e8f4ff"
+  },
+
+  countText: {
+    color: "#1476f8",
+    fontWeight: "800",
   },
 
   /* =========================
@@ -474,7 +674,6 @@ const styles = StyleSheet.create({
 
     marginTop: 14,
     marginBottom: 10,
-
     marginLeft: 64,
 
     backgroundColor: "#e2e9f1",
@@ -529,7 +728,7 @@ const styles = StyleSheet.create({
      BOTÓN
      ========================= */
 
-  detailButton: {
+  takeButton: {
     height: 52,
 
     flexDirection: "row",
@@ -545,10 +744,156 @@ const styles = StyleSheet.create({
     backgroundColor: "#1685f8",
   },
 
-  detailButtonText: {
+  takeButtonText: {
     color: "#ffffff",
 
     fontSize: 17,
     fontWeight: "800",
+  },
+
+  // vacio
+  emptyCard: {
+    alignItems: "center",
+
+    padding: 35,
+
+    borderRadius: 18,
+
+    backgroundColor: "#ffffff",
+  },
+
+  emptyTitle: {
+    marginTop: 12,
+    marginBottom: 5,
+
+    color: "#102846",
+
+    fontSize: 18,
+    fontWeight: "700",
+  },
+
+  emptyText: {
+    color: "#7889a1",
+
+    textAlign: "center",
+    lineHeight: 20,
+  },
+
+  modalOverlay: {
+    flex: 1,
+
+    alignItems: "center",
+    justifyContent: "center",
+
+    paddingHorizontal: 28,
+
+    backgroundColor: "rgba(15, 35, 55, 0.58)",
+  },
+
+  modalCard: {
+    width: "100%",
+
+    paddingHorizontal: 22,
+    paddingTop: 24,
+    paddingBottom: 20,
+
+    borderRadius: 22,
+
+    backgroundColor: "#ffffff",
+
+    elevation: 15,
+
+    shadowColor: "#000000",
+    shadowOffset: {
+      width: 0,
+      height: 8,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 20,
+  },
+
+  // ICONO RESULTADO
+  resultIcon: {
+    width: 62,
+    height: 62,
+
+    alignSelf: "center",
+
+    alignItems: "center",
+    justifyContent: "center",
+
+    marginBottom: 18,
+
+    borderRadius: 31,
+  },
+
+  successIcon: {
+    backgroundColor: "#e3f8f0"
+  },
+
+  errorIcon: {
+    backgroundColor: "#fff0f1",
+  },
+
+  modalTitle: {
+    marginBottom: 8,
+
+    color: "#102846",
+
+    fontSize: 21,
+    fontWeight: "700",
+    textAlign: "center",
+  },
+
+  modalDescription: {
+    marginBottom: 22,
+
+    color: "#71829b",
+
+    fontSize: 14,
+    lineHeight: 21,
+    textAlign: "center",
+  },
+
+  // boton principal
+  primaryButton: {
+    height: 52,
+
+    alignItems: "center",
+    justifyContent: "center",
+
+    marginBottom: 10,
+
+    borderRadius: 11,
+
+    backgroundColor: "#1685f8"
+  },
+
+  primaryButtonText: {
+    color: "#ffffff",
+
+    fontSize: 15,
+    fontWeight: "800",
+  },
+
+  // boton secundario
+  secondaryButton: {
+    height: 50,
+
+    alignItems: "center",
+    justifyContent: "center",
+
+    borderWidth: 1,
+    borderColor: "#bfd5ea",
+    borderRadius: 11,
+
+    backgroundColor: "#ffffff"
+  },
+
+  secondaryButtonText: {
+    color: "#0872df",
+
+    fontSize: 15,
+    fontWeight: "700",
   },
 });
