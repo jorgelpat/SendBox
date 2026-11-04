@@ -239,11 +239,11 @@ export default function AvailableShipments() {
                 activeOpacity={0.85}
               >
                 <Text style={styles.detailButtonText}>
-                  Ver detalle
+                  Tomar domicilio
                 </Text>
 
                 <Feather
-                  name="chevron-right"
+                  name="arrow-right"
                   size={25}
                   color="#ffffff"
                 />
