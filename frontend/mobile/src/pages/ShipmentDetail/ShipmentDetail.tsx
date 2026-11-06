@@ -105,11 +105,11 @@ export default function ShipmentDetail({
 }: ShipmentDetailProps) {
   const router = useRouter();
 
-  const storedShipment = shipments.find(
+  const shipment = shipments.find(
     (item) => item.id === shipmentId
   );
 
-  if (!storedShipment) {
+  if (!shipment) {
     return (
       <SafeAreaView style={styles.notFound}>
         <Text style={styles.notFoundTitle}>
@@ -128,33 +128,27 @@ export default function ShipmentDetail({
     );
   }
 
-  function handleMainAction() {
-    if (!storedShipment) {
-        return;
-    }
+  const currentStatus = statusOverride ?? shipment.status;
 
-    if (storedShipment.status === "ASIGNADO") {
+  function handleMainAction() {
+    if (currentStatus === "ASIGNADO") {
     router.push({
       pathname: "/domicilios/[id]/recogida",
       params: {
-        id: storedShipment.id.toString(),
+        id: shipmentId.toString(),
       },
     });
 
     return;
   }
 
-    if (storedShipment.status === "RECOGIDO") {
-      console.log(
-        "Registrar entrega:",
-        storedShipment.id
-      );
-
-      /*
-        Más adelante:
-        abrir pantalla para evidencia
-        de entrega y observación final.
-      */
+    if (currentStatus === "RECOGIDO") {
+      router.push({
+        pathname: "/domicilios/[id]/entrega",
+        params: {
+          id: shipmentId.toString(),
+        },
+      });
     }
   }
 
@@ -205,11 +199,11 @@ export default function ShipmentDetail({
 
           <View style={styles.clientInformation}>
             <Text style={styles.serviceCode}>
-              Servicio #{storedShipment.code}
+              Servicio #{shipment.code}
             </Text>
 
             <Text style={styles.clientName}>
-              {storedShipment.client}
+              {shipment.client}
             </Text>
           </View>
 
@@ -217,13 +211,13 @@ export default function ShipmentDetail({
             style={[
               styles.statusBadge,
 
-              storedShipment.status === "ASIGNADO" &&
+              shipment.status === "ASIGNADO" &&
                 styles.statusAssigned,
 
-              storedShipment.status === "RECOGIDO" &&
+              shipment.status === "RECOGIDO" &&
                 styles.statusPickedUp,
 
-              storedShipment.status === "ENTREGADO" &&
+              shipment.status === "ENTREGADO" &&
                 styles.statusDelivered,
             ]}
           >
@@ -231,13 +225,13 @@ export default function ShipmentDetail({
               style={[
                 styles.statusDot,
 
-                storedShipment.status === "ASIGNADO" &&
+                shipment.status === "ASIGNADO" &&
                   styles.dotAssigned,
 
-                storedShipment.status === "RECOGIDO" &&
+                shipment.status === "RECOGIDO" &&
                   styles.dotPickedUp,
 
-                storedShipment.status === "ENTREGADO" &&
+                shipment.status === "ENTREGADO" &&
                   styles.dotDelivered,
               ]}
             />
@@ -246,19 +240,19 @@ export default function ShipmentDetail({
               style={[
                 styles.statusBadgeText,
 
-                storedShipment.status === "ASIGNADO" &&
+                shipment.status === "ASIGNADO" &&
                   styles.textAssigned,
 
-                storedShipment.status === "RECOGIDO" &&
+                shipment.status === "RECOGIDO" &&
                   styles.textPickedUp,
 
-                storedShipment.status === "ENTREGADO" &&
+                shipment.status === "ENTREGADO" &&
                   styles.textDelivered,
               ]}
             >
-              {storedShipment.status === "ASIGNADO"
+              {shipment.status === "ASIGNADO"
                 ? "Asignado"
-                : storedShipment.status === "RECOGIDO"
+                : shipment.status === "RECOGIDO"
                   ? "Recogido"
                   : "Entregado"}
             </Text>
@@ -274,11 +268,11 @@ export default function ShipmentDetail({
             number={1}
             label="Asignado"
             completed={
-              storedShipment.status === "RECOGIDO" ||
-              storedShipment.status === "ENTREGADO"
+              shipment.status === "RECOGIDO" ||
+              shipment.status === "ENTREGADO"
             }
             active={
-              storedShipment.status === "ASIGNADO"
+              shipment.status === "ASIGNADO"
             }
           />
 
@@ -286,7 +280,7 @@ export default function ShipmentDetail({
             style={[
               styles.progressLine,
 
-              storedShipment.status !== "ASIGNADO" &&
+              shipment.status !== "ASIGNADO" &&
                 styles.progressLineActive,
             ]}
           />
@@ -295,10 +289,10 @@ export default function ShipmentDetail({
             number={2}
             label="Recogido"
             completed={
-              storedShipment.status === "ENTREGADO"
+              shipment.status === "ENTREGADO"
             }
             active={
-              storedShipment.status === "RECOGIDO"
+              shipment.status === "RECOGIDO"
             }
           />
 
@@ -306,7 +300,7 @@ export default function ShipmentDetail({
             style={[
               styles.progressLine,
 
-              storedShipment.status === "ENTREGADO" &&
+              shipment.status === "ENTREGADO" &&
                 styles.progressLineActive,
             ]}
           />
@@ -315,10 +309,10 @@ export default function ShipmentDetail({
             number={3}
             label="Entregado"
             completed={
-              storedShipment.status === "ENTREGADO"
+              shipment.status === "ENTREGADO"
             }
             active={
-              storedShipment.status === "ENTREGADO"
+              shipment.status === "ENTREGADO"
             }
           />
         </View>
@@ -345,11 +339,11 @@ export default function ShipmentDetail({
               </Text>
 
               <Text style={styles.locationName}>
-                {storedShipment.pickupName}
+                {shipment.pickupName}
               </Text>
 
               <Text style={styles.locationAddress}>
-                {storedShipment.pickupAddress}
+                {shipment.pickupAddress}
               </Text>
             </View>
 
@@ -387,11 +381,11 @@ export default function ShipmentDetail({
               </Text>
 
               <Text style={styles.locationName}>
-                {storedShipment.deliveryName}
+                {shipment.deliveryName}
               </Text>
 
               <Text style={styles.locationAddress}>
-                {storedShipment.deliveryAddress}
+                {shipment.deliveryAddress}
               </Text>
             </View>
 
@@ -427,11 +421,11 @@ export default function ShipmentDetail({
               </Text>
 
               <Text style={styles.contactName}>
-                {storedShipment.contactName}
+                {shipment.contactName}
               </Text>
 
               <Text style={styles.contactPhone}>
-                {storedShipment.contactPhone}
+                {shipment.contactPhone}
               </Text>
             </View>
 
@@ -457,7 +451,7 @@ export default function ShipmentDetail({
           </Text>
 
           <Text style={styles.descriptionText}>
-            {storedShipment.description}
+            {shipment.description}
           </Text>
         </View>
 
@@ -465,21 +459,21 @@ export default function ShipmentDetail({
             ACCIÓN
             ========================= */}
 
-        {storedShipment.status !== "ENTREGADO" && (
+        {shipment.status !== "ENTREGADO" && (
           <TouchableOpacity
             style={styles.mainButton}
             onPress={handleMainAction}
             activeOpacity={0.85}
           >
             <Text style={styles.mainButtonText}>
-              {storedShipment.status === "ASIGNADO"
+              {shipment.status === "ASIGNADO"
                 ? "Registrar recogida"
                 : "Registrar entrega"}
             </Text>
 
             <Feather
               name={
-                storedShipment.status === "ASIGNADO"
+                shipment.status === "ASIGNADO"
                   ? "camera"
                   : "check-circle"
               }
@@ -489,7 +483,7 @@ export default function ShipmentDetail({
           </TouchableOpacity>
         )}
 
-        {storedShipment.status === "ENTREGADO" && (
+        {shipment.status === "ENTREGADO" && (
           <View style={styles.completedMessage}>
             <Feather
               name="check-circle"

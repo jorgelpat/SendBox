@@ -14,7 +14,9 @@ export default function ShipmentDetailRoute() {
       statusOverride={
         status === "RECOGIDO"
           ? "RECOGIDO"
-          : undefined
+          : status === "ENTREGADO"
+            ? "ENTREGADO"
+            : undefined
       }
     />
   );
