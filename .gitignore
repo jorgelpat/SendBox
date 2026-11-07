@@ -1,3 +1,32 @@
 # Notas de estudio y guías personales
 mi_guia_paso_a_paso.md
 comandos-git.md
+
+# Dependencias de JavaScript
+**/node_modules/
+
+# Expo / React Native
+**/.expo/
+**/android/.gradle/
+**/ios/Pods/
+**/ios/build/
+
+# Caché
+**/.cache/
+**/.metro-cache/
+**/coverage/
+
+# Compilación
+**/dist/
+**/build/
+
+# Logs
+**/*.log
+
+# Variables de entorno
+**/.env
+**/.env.*
+!**/.env.example
+
+/frontend/mobile/example/
+expo-env.d.ts
